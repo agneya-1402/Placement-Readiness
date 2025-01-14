@@ -4,7 +4,7 @@ import PyPDF2
 from typing import List, Dict
 
 # Gemini 
-genai.configure(api_key='AIzaSyBDfeJtgAINSeidy3ZZKHacPL7wP6Nmzw8')
+genai.configure(api_key='your api key')
 model = genai.GenerativeModel('gemini-pro')
 
 # HR Questions
