@@ -62,7 +62,7 @@ HR_QUESTIONS = [
 ]
 
 def extract_text_from_pdf(pdf_file) -> str:
-    """Extract text from uploaded PDF file."""
+    # Extract text from pdf
     pdf_reader = PyPDF2.PdfReader(pdf_file)
     text = ""
     for page in pdf_reader.pages:
@@ -70,7 +70,7 @@ def extract_text_from_pdf(pdf_file) -> str:
     return text
 
 def analyze_profile(resume_text: str, field: str, subfield: str, interview_score: float, gpa: float) -> Dict:
-    """Analyze the complete profile using Gemini API."""
+    # Analyze ans
     prompt = f"""Analyze this candidate profile for a {field} position specializing in {subfield}.
     
     Profile details:
@@ -93,12 +93,12 @@ def analyze_profile(resume_text: str, field: str, subfield: str, interview_score
     return response.text
 
 def calculate_interview_score(responses: List[int]) -> float:
-    """Calculate the interview score based on responses."""
+    # Calculate intv score 
     correct_answers = sum(1 for q, resp in zip(HR_QUESTIONS, responses) 
                          if resp == q['best_answer'])
     return (correct_answers / len(HR_QUESTIONS)) * 100
 
-# init session 
+
 if 'step' not in st.session_state:
     st.session_state.step = 1
 if 'responses' not in st.session_state:
@@ -107,7 +107,6 @@ if 'responses' not in st.session_state:
 # UI
 st.title("Placement Readiness Assessment")
 
-# Basic info + HR Questions
 if st.session_state.step == 1:
     # Field 
     field_options = [
